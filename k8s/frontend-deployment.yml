@@ -10,20 +10,22 @@ spec:
       app: frontend
   template:
     metadata:
-      name: frontend-pod
-      namespace: chat-app
-      labels: 
+      labels:
         app: frontend
     spec:
       containers:
-      - name: chatapp-frontend
-        image: trainwithshubham/chatapp-frontend
-        ports:
-        - containerPort: 80
-        env:
-        - name: NODE_ENV
-          value: production
-          
+        - name: chatapp-frontend
+          image: surajw73/chatapp-frontend:latest
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "500m"
+            limits:
+              memory: "500Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
 
-
-
+          env:
+            - name: NODE_ENV
+              value: production
